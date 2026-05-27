@@ -1,0 +1,235 @@
+/* =============================================
+   menu.css - D'Monster | Menú
+   ============================================= */
+
+:root {
+    --negro-puro: #000000;
+    --gris-menu:  #222222;
+    --amarillo:   #fff200;
+    --fucsia:     #ff00ff;
+    --verde:      #00ff00;
+    --celeste:    #00ffff;
+}
+
+/* ---- GENERAL ---- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--gris-menu);
+    color: #ffffff;
+}
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--negro-puro);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+}
+
+header h1 {
+    color: var(--amarillo);
+    font-size: 2.5em;
+    margin: 0;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h1:hover {
+    transform: scale(1.1);
+    letter-spacing: 10px;
+}
+
+header h2 {
+    color: #ffffff;
+    font-size: 1em;
+    margin: 0;
+    letter-spacing: 3px;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h2:hover {
+    transform: scale(1.1);
+    letter-spacing: 8px;
+}
+
+/* ---- MENÚ PRINCIPAL ---- */
+.menu-nav {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 4px solid var(--fucsia);
+}
+ 
+.menu-nav a {
+    color: var(--amarillo);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 1em;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+ 
+.menu-nav a:hover {
+    color: var(--fucsia);
+    transform: scale(1.2);
+}
+ 
+/* ---- NAV CATEGORÍAS ---- */
+.nav-categorias {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 2px solid var(--amarillo);
+}
+ 
+.nav-categorias a {
+    color: var(--celeste);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 1em;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+ 
+.nav-categorias a:hover {
+    color: var(--amarillo);
+    transform: scale(1.2);
+}
+ 
+/* ---- SECCIÓN MENÚ (dos columnas: título + platos) ---- */
+.seccion-menu {
+    display: flex;
+    gap: 40px;
+    padding: 50px 60px;
+    align-items: flex-start;
+}
+ 
+/* ---- TÍTULO DE SECCIÓN ---- */
+.titulo-seccion {
+    width: 180px;
+    flex-shrink: 0;
+}
+ 
+.titulo-seccion .etiqueta {
+    color: var(--amarillo);
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    margin: 0 0 8px 0;
+}
+ 
+.titulo-seccion h2 {
+    color: #ffffff;
+    font-size: 2em;
+    margin: 0;
+    line-height: 1.2;
+    border-left: 5px solid var(--fucsia);
+    padding-left: 10px;
+}
+ 
+/* ---- LISTA DE PLATOS (grilla 2 columnas) ---- */
+.lista-platos {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+ 
+/* ---- CADA PLATO ---- */
+.plato-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    width: 45%;
+    transition: transform 0.3s ease;
+}
+ 
+.plato-item:hover {
+    transform: translateY(-4px);
+}
+ 
+/* ---- IMAGEN CIRCULAR ---- */
+.img-circular {
+    width: 160px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--fucsia);
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+ 
+.img-circular:hover {
+    border-color: var(--amarillo);
+    transform: scale(1.08);
+}
+ 
+/* ---- INFO DEL PLATO ---- */
+.plato-info {
+    flex: 1;
+}
+ 
+.plato-encabezado {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+ 
+.plato-encabezado strong {
+    color: #ffffff;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+}
+ 
+.plato-info p {
+    color: #999999;
+    font-size: 0.88em;
+    line-height: 1.5;
+    margin: 0;
+}
+ 
+/* ---- PRECIO TAG ---- */
+.precio-tag {
+    background-color: #3a3a2a;
+    color: var(--amarillo);
+    font-weight: bold;
+    font-size: 0.85em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+ 
+.precio-tag:hover {
+    background-color: var(--fucsia);
+    color: #ffffff;
+}
+ 
+/* ---- HR ---- */
+hr {
+    border: none;
+    border-top: 1px solid #333333;
+    margin: 0;
+}
+ 
+/* ---- FOOTER ---- */
+footer {
+    background-color: var(--negro-puro);
+    text-align: center;
+    padding: 20px;
+    color: #888888;
+    border-top: 3px solid var(--amarillo);
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+ 
+footer strong {
+    color: var(--amarillo);
+}

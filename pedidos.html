@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Servicios y Pedidos - D'Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/pedidos.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="logo.png" alt="Logo de D'Monster">
+        <h1>D'MONSTER</h1>
+        <h2>IDENTIDAD ES SABOR</h2>
+    </header>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="Nosotros.html">Acerca</a>
+        <a href="pedidos.html">Servicios</a>
+        <a href="menu.html">Menú</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <main>
+        <hr>
+
+        <section id="servicios-pedidos">
+            
+            <div class="info-servicios">
+                <p class="etiqueta">NUESTROS SERVICIOS</p>
+                <h2>PIDE EL VERDADERO</h2>
+                <h3>SABOR URBANO!</h3>
+                <p>
+                    Llevamos el barrio y la sazón directamente hasta la puerta de tu casa. 
+                    Nuestros envíos se realizan con un empaque térmico especial para que tus platos 
+                    lleguen perfectos.
+                </p>
+                
+                <div class="detalles-servicio">
+                    <h4>Zonas y Cobertura</h4>
+                    <p>Atendemos delivery en Ica Centro, San Joaquín, Parcona, La Tinguiña y Subtanjalla.</p>
+                    
+                    <h4>Facilidad de Pago</h4>
+                    <p>Aceptamos pagos mediante transferencias (Yape/Plin) y Efectivo.</p>
+                </div>
+            </div>
+
+            <div class="form-pedidos">
+                <form>
+                    <fieldset>
+                        <legend>Arma tu Pedido</legend>
+
+                        <label>Tu Nombre Completo:</label>
+                        <input type="text" name="cliente_nombre" placeholder="ejm: Juan Carlos" required>
+
+                        <div class="fila-formulario">
+                            <div>
+                                <label>Teléfono / WhatsApp:</label>
+                                <input type="tel" name="cliente_telefono" placeholder="ejm: 999000000" required>
+                            </div>
+                            <div>
+                                <label>Distrito de Destino:</label>
+                                <select name="distrito" required>
+                                    <option value="" disabled selected>Selecciona tu zona</option>
+                                    <option value="ica-centro">Ica Centro</option>
+                                    <option value="san-joaquin">San Joaquín</option>
+                                    <option value="parcona">Parcona</option>
+                                    <option value="la-tinguina">La Tinguiña</option>
+                                    <option value="subtanjalla">Subtanjalla</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label>Dirección Exacta de Entrega:</label>
+                        <input type="text" name="direccion" placeholder="ejm: Av. Grau 145 (Frente al parque)" required>
+
+                        <label class="seccion-titulo-form" style="margin-top: 30px;">Selecciona tus platos:</label>
+
+                        <div class="caja-scroll-menu">
+
+                            <div class="categoria-separador">1. ENTRADAS</div>
+                            <div class="rejilla-platos">
+                                
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="no_entradas" name="omitir_entradas" class="check-oculto">
+                                    <label for="no_entradas" class="contenido-tarjeta tarjeta-omitir">
+                                        <div class="info">
+                                            <strong>[X] No deseo Entrada</strong>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_anticuchos" name="pedir_anticuchos" class="check-oculto">
+                                    <label for="chk_anticuchos" class="contenido-tarjeta">
+                                        <img src="Anticuchos.png" alt="Anticuchos">
+                                        <div class="info">
+                                            <strong>Anticuchos</strong>
+                                            <span>S/ 18.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_anticuchos" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_causa" name="pedir_causa" class="check-oculto">
+                                    <label for="chk_causa" class="contenido-tarjeta">
+                                        <img src="Causa.png" alt="Causa Limeña">
+                                        <div class="info">
+                                            <strong>Causa Limeña</strong>
+                                            <span>S/ 12.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_causa" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_ceviche" name="pedir_ceviche" class="check-oculto">
+                                    <label for="chk_ceviche" class="contenido-tarjeta">
+                                        <img src="Ceviche de carretilla.png" alt="Ceviche">
+                                        <div class="info">
+                                            <strong>Ceviche</strong>
+                                            <span>S/ 15.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_ceviche" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_huancaina" name="pedir_huancaina" class="check-oculto">
+                                    <label for="chk_huancaina" class="contenido-tarjeta">
+                                        <img src="Papa a la huancaina.png" alt="Papa a la Huancaína">
+                                        <div class="info">
+                                            <strong>Papa a la Huancaína</strong>
+                                            <span>S/ 12.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_huancaina" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_paparellena" name="pedir_paparellena" class="check-oculto">
+                                    <label for="chk_paparellena" class="contenido-tarjeta">
+                                        <img src="Papa rellena.png" alt="Papa Rellena">
+                                        <div class="info">
+                                            <strong>Papa Rellena</strong>
+                                            <span>S/ 8.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_paparellena" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_tamales" name="pedir_tamales" class="check-oculto">
+                                    <label for="chk_tamales" class="contenido-tarjeta">
+                                        <img src="Tamales.png" alt="Tamales">
+                                        <div class="info">
+                                            <strong>Tamales</strong>
+                                            <span>S/ 7.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_tamales" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_papahuevo" name="pedir_papahuevo" class="check-oculto">
+                                    <label for="chk_papahuevo" class="contenido-tarjeta">
+                                        <img src="Papa con huevo.png" alt="Papa con Huevo">
+                                        <div class="info">
+                                            <strong>Papa con Huevo</strong>
+                                            <span>S/ 6.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_papahuevo" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_chocloqueso" name="pedir_chocloqueso" class="check-oculto">
+                                    <label for="chk_chocloqueso" class="contenido-tarjeta">
+                                        <img src="Choclo con queso.png" alt="Choclo con Queso">
+                                        <div class="info">
+                                            <strong>Choclo con Queso</strong>
+                                            <span>S/ 8.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_chocloqueso" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="categoria-separador">2. PLATOS PRINCIPALES</div>
+                            <div class="rejilla-platos">
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="no_principales" name="omitir_principales" class="check-oculto">
+                                    <label for="no_principales" class="contenido-tarjeta tarjeta-omitir">
+                                        <div class="info">
+                                            <strong>[X] No deseo Segundos</strong>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_mostrito" name="pedir_mostrito" class="check-oculto">
+                                    <label for="chk_mostrito" class="contenido-tarjeta">
+                                        <img src="Mostrito.png" alt="Mostrito">
+                                        <div class="info">
+                                            <strong>Mostrito D'Monster</strong>
+                                            <span>S/ 15.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_mostrito" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_salchipapa" name="pedir_salchipapa" class="check-oculto">
+                                    <label for="chk_salchipapa" class="contenido-tarjeta">
+                                        <img src="Salchipapa.png" alt="Salchipapa">
+                                        <div class="info">
+                                            <strong>Salchipapa Clásica</strong>
+                                            <span>S/ 12.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_salchipapa" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_pollo" name="pedir_pollo" class="check-oculto">
+                                    <label for="chk_pollo" class="contenido-tarjeta">
+                                        <img src="Pollo a la brasa.png" alt="Pollo a la brasa">
+                                        <div class="info">
+                                            <strong>Pollo a la Brasa</strong>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra col-completa">
+                                        <select name="porcion_pollo" class="medida-dropdown">
+                                            <option value="1/8">1/8 de Pollo (S/ 10.00)</option>
+                                            <option value="1/4">1/4 de Pollo (S/ 15.00)</option>
+                                            <option value="1/2">1/2 Pollo (S/ 40.00)</option>
+                                            <option value="entero">Pollo Entero (S/ 85.00)</option>
+                                        </select>
+                                        <input type="number" name="cant_pollo" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_caldo" name="pedir_caldo" class="check-oculto">
+                                    <label for="chk_caldo" class="contenido-tarjeta">
+                                        <img src="Caldo .png" alt="Caldo de Gallina">
+                                        <div class="info">
+                                            <strong>Caldo de Gallina</strong>
+                                            <span>S/ 9.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_caldo" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_hamburguesa" name="pedir_hamburguesa" class="check-oculto">
+                                    <label for="chk_hamburguesa" class="contenido-tarjeta">
+                                        <img src="Hamburguesa.png" alt="Hamburguesa">
+                                        <div class="info">
+                                            <strong>Hamburguesa</strong>
+                                            <span>S/ 8.90</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_hamburguesa" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_tallarin" name="pedir_tallarin" class="check-oculto">
+                                    <label for="chk_tallarin" class="contenido-tarjeta">
+                                        <img src="Tallarin verde .png" alt="Tallarines Verdes">
+                                        <div class="info">
+                                            <strong>Tallarines Verdes</strong>
+                                            <span>S/ 13.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_tallarin" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_pure" name="pedir_pure" class="check-oculto">
+                                    <label for="chk_pure" class="contenido-tarjeta">
+                                        <img src="Pure.png" alt="Puré de Papa">
+                                        <div class="info">
+                                            <strong>Puré de Papa</strong>
+                                            <span>S/ 12.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_pure" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="categoria-separador">3. POSTRES Y DULCES</div>
+                            <div class="rejilla-platos">
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="no_postres" name="omitir_postres" class="check-oculto">
+                                    <label for="no_postres" class="contenido-tarjeta tarjeta-omitir">
+                                        <div class="info">
+                                            <strong>[X] No deseo Postre</strong>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_picarones" name="pedir_picarones" class="check-oculto">
+                                    <label for="chk_picarones" class="contenido-tarjeta">
+                                        <img src="Picarones.png" alt="Picarones">
+                                        <div class="info">
+                                            <strong>Picarones</strong>
+                                            <span>S/ 8.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_picarones" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_mazamorra" name="pedir_mazamorra" class="check-oculto">
+                                    <label for="chk_mazamorra" class="contenido-tarjeta">
+                                        <img src="Mazamorra morada.png" alt="Mazamorra Morada">
+                                        <div class="info">
+                                            <strong>Mazamorra Morada</strong>
+                                            <span>S/ 6.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_mazamorra" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_arrozleche" name="pedir_arrozleche" class="check-oculto">
+                                    <label for="chk_arrozleche" class="contenido-tarjeta">
+                                        <img src="Arroz con leche.png" alt="Arroz con Leche">
+                                        <div class="info">
+                                            <strong>Arroz con Leche</strong>
+                                            <span>S/ 6.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_arrozleche" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_churros" name="pedir_churros" class="check-oculto">
+                                    <label for="chk_churros" class="contenido-tarjeta">
+                                        <img src="Churros.png" alt="Churros">
+                                        <div class="info">
+                                            <strong>Churros</strong>
+                                            <span>S/ 5.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_churros" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="categoria-separador">4. BEBIDAS (Selecciona y elige tamaño)</div>
+                            <div class="rejilla-platos">
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="no_bebidas" name="omitir_bebidas" class="check-oculto">
+                                    <label for="no_bebidas" class="contenido-tarjeta tarjeta-omitir">
+                                        <div class="info">
+                                            <strong>[X] No deseo Bebidas</strong>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_chicha" name="pedir_chicha" class="check-oculto">
+                                    <label for="chk_chicha" class="contenido-tarjeta">
+                                        <img src="Chicha morada (jarra de vidrio).png" alt="Chicha Morada">
+                                        <div class="info">
+                                            <strong>Chicha Morada</strong>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra col-completa">
+                                        <select name="medida_chicha" class="medida-dropdown">
+                                            <option value="Vaso">Vaso (S/ 5.00)</option>
+                                            <option value="Jarra">Jarra (S/ 15.00)</option>
+                                        </select>
+                                        <input type="number" name="cant_chicha" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_inca" name="pedir_inca" class="check-oculto">
+                                    <label for="chk_inca" class="contenido-tarjeta">
+                                        <img src="Inka kola.png" alt="Inca Kola">
+                                        <div class="info">
+                                            <strong>Inca Kola</strong>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra col-completa">
+                                        <select name="medida_inca" class="medida-dropdown">
+                                            <option value="500ml">500ml (S/ 4.00)</option>
+                                            <option value="1L">1 Litro (S/ 8.00)</option>
+                                            <option value="1.5L">1.5 Litros (S/ 11.00)</option>
+                                            <option value="3L">3 Litros (S/ 18.00)</option>
+                                        </select>
+                                        <input type="number" name="cant_inca" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_maracuya" name="pedir_maracuya" class="check-oculto">
+                                    <label for="chk_maracuya" class="contenido-tarjeta">
+                                        <img src="Jugo de maracuyá  (jarra de vidrio).png" alt="Jugo de Maracuyá">
+                                        <div class="info">
+                                            <strong>Jugo de Maracuyá</strong>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra col-completa">
+                                        <select name="medida_maracuya" class="medida-dropdown">
+                                            <option value="Vaso">Vaso (S/ 5.00)</option>
+                                            <option value="Jarra">Jarra (S/ 15.00)</option>
+                                        </select>
+                                        <input type="number" name="cant_maracuya" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_emoliente" name="pedir_emoliente" class="check-oculto">
+                                    <label for="chk_emoliente" class="contenido-tarjeta">
+                                        <img src="emoliente.png" alt="Emoliente">
+                                        <div class="info">
+                                            <strong>Emoliente</strong>
+                                            <span>S/ 4.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_emoliente" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_jora" name="pedir_jora" class="check-oculto">
+                                    <label for="chk_jora" class="contenido-tarjeta">
+                                        <img src="chicha de jora.png" alt="Chicha de Jora">
+                                        <div class="info">
+                                            <strong>Chicha de Jora</strong>
+                                            <span>S/ 5.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_jora" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                                <div class="tarjeta-wrapper">
+                                    <input type="checkbox" id="chk_limonada" name="pedir_limonada" class="check-oculto">
+                                    <label for="chk_limonada" class="contenido-tarjeta">
+                                        <img src="Limonada frozen.png" alt="Limonada Peruana">
+                                        <div class="info">
+                                            <strong>Limonada Peruana</strong>
+                                            <span>S/ 5.00</span>
+                                        </div>
+                                    </label>
+                                    <div class="controles-extra">
+                                        <label>Cant:</label>
+                                        <input type="number" name="cant_limonada" min="1" value="1" class="cant-input">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div> <label class="seccion-titulo-form" style="margin-top: 25px;">Forma de Pago:</label>
+                        <div class="opciones-pago">
+                            <label class="radio-label">
+                                <input type="radio" name="pago" value="yape" checked> Yape
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="pago" value="plin"> Plin
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="pago" value="efectivo"> Efectivo
+                            </label>
+                        </div>
+
+                        <label>Indicaciones adicionales para el repartidor o cocina:</label>
+                        <textarea name="notas" rows="3" placeholder="ejm: Traer vuelto de S/ 50..."></textarea>
+
+                    </fieldset>
+
+                    <div class="botones-contenedor">
+                        <input type="reset" value="Limpiar Todo">
+                        <button type="submit">Enviar Pedido por WhatsApp</button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+
+        <hr>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>D'MONSTER</strong> - IDENTIDAD ES SABOR</p>
+    </footer>
+
+</body>
+</html>

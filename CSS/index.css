@@ -1,0 +1,189 @@
+/* =============================================
+   index.css - D'Monster | Inicio
+   ============================================= */
+
+:root {
+    --negro-puro: #000000;
+    --gris-menu:  #222222;
+    --amarillo:   #fff200;
+    --fucsia:     #ff00ff;
+    --verde:      #00ff00;
+    --celeste:    #00ffff;
+}
+
+/* ---- GENERAL ---- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--gris-menu);
+    color: #ffffff;
+    animation: fondoAnimado 4s infinite alternate;
+}
+
+@keyframes fondoAnimado {
+    0%   { background-color: var(--gris-menu); }
+    100% { background-color: #2a002a; }
+}
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--negro-puro);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+}
+
+header h1 {
+    color: var(--amarillo);
+    font-size: 2.5em;
+    margin: 0;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h1:hover {
+    transform: scale(1.1);
+    letter-spacing: 10px;
+}
+
+header h2 {
+    color: #ffffff;
+    font-size: 1em;
+    margin: 0;
+    letter-spacing: 3px;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h2:hover {
+    transform: scale(1.1);
+    letter-spacing: 8px;
+}
+
+
+/* MENU */
+.menu {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+.menu a {
+    color: var(--amarillo);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 1em;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--fucsia);
+    transform: scale(1.2);
+}
+
+/* ---- SECCIÓN INTRO ---- */
+.intro {
+    padding: 30px 40px;
+}
+
+.intro h2 {
+    color: var(--amarillo);
+    border-left: 5px solid var(--fucsia);
+    padding-left: 10px;
+    font-size: 1.6em;
+    transition: border-left-color 0.3s ease;
+}
+
+.intro h2:hover {
+    border-left-color: var(--celeste);
+}
+
+.intro h3 {
+    color: var(--fucsia);
+    font-size: 1.2em;
+}
+
+.intro p {
+    color: #cccccc;
+    line-height: 1.7;
+}
+
+/* ---- LISTA ---- */
+ul {
+    color: #cccccc;
+    line-height: 2;
+}
+
+ul li {
+    transition: color 0.3s ease;
+}
+
+ul li:hover {
+    color: var(--amarillo);
+    cursor: default;
+}
+
+/* ---- ENLACE PEDIDO ---- */
+.link-pedido {
+    color: var(--fucsia);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link-pedido:hover {
+    color: var(--amarillo);
+}
+
+/* ---- IMÁGENES SALÓN ---- */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.418);
+}
+
+.galeria {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.local {
+    width: 450px;
+    text-align: center;
+}
+
+.local img {
+    transition: transform 0.6s ease, border 0.6s ease;
+}
+
+.local img:hover {
+    transform: scale(1.08) translateY(-8px);
+    border: 3px solid var(--amarillo);
+}
+
+/* ---- FOOTER ---- */
+footer {
+    background-color: var(--negro-puro);
+    text-align: center;
+    padding: 20px;
+    color: #888888;
+    border-top: 3px solid var(--amarillo);
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+footer strong {
+    color: var(--amarillo);
+}

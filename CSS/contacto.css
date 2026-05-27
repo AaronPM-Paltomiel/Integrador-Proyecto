@@ -1,0 +1,298 @@
+/* =============================================
+   contacto.css - D'Monster | Contacto
+   ============================================= */
+
+:root {
+    --negro-puro: #000000;
+    --gris-menu:  #222222;
+    --amarillo:   #fff200;
+    --fucsia:     #ff00ff;
+    --verde:      #00ff00;
+    --celeste:    #00ffff;
+}
+
+/* ---- GENERAL ---- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--gris-menu);
+    color: #ffffff;
+}
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--negro-puro);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+}
+
+header h1 {
+    color: var(--amarillo);
+    font-size: 2.5em;
+    margin: 0;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h1:hover {
+    transform: scale(1.1);
+    letter-spacing: 10px;
+}
+
+header h2 {
+    color: #ffffff;
+    font-size: 1em;
+    margin: 0;
+    letter-spacing: 3px;
+    display: inline-block;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h2:hover {
+    transform: scale(1.1);
+    letter-spacing: 8px;
+}
+
+/* ---- MENÚ ---- */
+.menu {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+.menu a {
+    color: var(--amarillo);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 1em;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--fucsia);
+    transform: scale(1.2);
+}
+
+/* ---- SECCIÓN CONTACTO (dos columnas) ---- */
+#contacto {
+    display: flex;
+    gap: 40px;
+    padding: 50px 60px;
+    align-items: flex-start;
+}
+
+/* ---- COLUMNA IZQUIERDA ---- */
+.info-contacto {
+    flex: 1;
+}
+
+.info-contacto .subtitulo {
+    color: var(--amarillo);
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.info-contacto h2 {
+    color: #ffffff;
+    font-size: 2em;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.info-contacto h3 {
+    color: var(--amarillo);
+    font-size: 2em;
+    margin: 0 0 20px 0;
+}
+
+.info-contacto p {
+    color: #cccccc;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.info-contacto strong {
+    color: var(--fucsia);
+}
+
+/* ---- REDES SOCIALES ---- */
+.redes {
+    margin-top: 20px;
+}
+
+.redes a {
+    color: var(--negro-puro);
+    background-color: var(--amarillo);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85em;
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-right: 8px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.redes a:hover {
+    background-color: var(--fucsia);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* ---- COLUMNA DERECHA (formulario) ---- */
+.form-contacto {
+    flex: 1;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 30px;
+    border: 2px solid var(--fucsia);
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    color: var(--amarillo);
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    padding: 0;
+    letter-spacing: 1px;
+}
+
+label {
+    color: #cccccc;
+    display: block;
+    margin-top: 14px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 95%;
+    padding: 10px;
+    margin-top: 6px;
+    background-color: #2a2a2a;
+    border: 1px solid #444444;
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 0.95em;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--amarillo);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+/* ---- FILA DOS COLUMNAS dentro del form ---- */
+.fila-dos {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.fila-dos div {
+    flex: 1;
+}
+
+.fila-dos input {
+    width: 88%;
+}
+
+/* ---- RADIO ---- */
+.opciones {
+    margin-top: 14px;
+    color: #cccccc;
+    line-height: 2;
+}
+
+input[type="radio"] {
+    margin-right: 6px;
+}
+
+/* ---- BOTONES ---- */
+input[type="reset"] {
+    background-color: #444444;
+    color: #ffffff;
+    padding: 12px 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="reset"]:hover {
+    background-color: #333333;
+    transform: scale(1.05);
+}
+
+button[type="submit"] {
+    background-color: var(--amarillo);
+    color: var(--negro-puro);
+    padding: 12px 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--fucsia);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* ---- HR ---- */
+hr {
+    border: none;
+    border-top: 1px solid #333333;
+    margin: 0;
+}
+
+/* ---- FOOTER ---- */
+footer {
+    background-color: var(--negro-puro);
+    text-align: center;
+    padding: 20px;
+    color: #888888;
+    border-top: 3px solid var(--amarillo);
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+
+footer strong {
+    color: var(--amarillo);
+}

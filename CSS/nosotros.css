@@ -1,0 +1,189 @@
+/* =============================================
+   nosotros.css - D'Monster | Nosotros
+   ============================================= */
+
+:root {
+    --negro-puro: #000000;
+    --gris-menu:  #222222;
+    --amarillo:   #fff200;
+    --fucsia:     #ff00ff;
+    --verde:      #00ff00;
+    --celeste:    #00ffff;
+}
+
+/* ---- GENERAL ---- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--gris-menu);
+    color: #ffffff;
+}
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--negro-puro);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+}
+
+header h1 {
+    color: var(--amarillo);
+    font-size: 2.5em;
+    margin: 0;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h1:hover {
+    transform: scale(1.1);
+    letter-spacing: 10px;
+}
+
+header h2 {
+    color: #ffffff;
+    font-size: 1em;
+    margin: 0;
+    letter-spacing: 3px;
+    transition: transform 0.3s ease, letter-spacing 0.4s ease;
+}
+
+header h2:hover {
+    transform: scale(1.1);
+    letter-spacing: 8px;
+}
+/* ---- MENÚ ---- */
+.menu {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 4px solid var(--fucsia);
+}
+
+.menu a {
+    color: var(--amarillo);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 1em;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--fucsia);
+    transform: scale(1.2);
+}
+
+/* ---- SECCIONES ---- */
+section {
+    padding: 30px 40px;
+}
+
+section h2 {
+    color: var(--amarillo);
+    border-left: 5px solid var(--fucsia);
+    padding-left: 10px;
+    font-size: 1.6em;
+    transition: border-left-color 0.3s ease;
+}
+
+section h2:hover {
+    border-left-color: var(--celeste);
+}
+
+section h3 {
+    color: var(--fucsia);
+    font-size: 1.2em;
+}
+
+section p {
+    color: #cccccc;
+    line-height: 1.7;
+}
+
+/* ---- LISTA ---- */
+ul {
+    color: #cccccc;
+    line-height: 2.2;
+}
+
+ul li {
+    transition: color 0.3s ease;
+}
+
+ul li:hover {
+    color: var(--amarillo);
+    cursor: default;
+}
+
+ul li strong {
+    color: var(--fucsia);
+}
+
+/* ---- TABLA ---- */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 2px solid var(--negro-puro);
+}
+
+th {
+    background-color: var(--fucsia);
+    color: var(--negro-puro);
+    padding: 12px;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    color: #cccccc;
+    background-color: var(--gris-menu);
+    transition: background-color 0.3s ease;
+}
+
+td:hover {
+    background-color: #4b5148cb;
+    cursor: default;
+}
+
+td strong {
+    color: var(--amarillo);
+}
+
+tfoot td {
+    color: var(--celeste);
+    font-style: italic;
+}
+
+/* ---- HR ---- */
+hr {
+    border: none;
+    border-top: 1px solid #333333;
+    margin: 0;
+}
+
+/* ---- FOOTER ---- */
+footer {
+    background-color: var(--negro-puro);
+    text-align: center;
+    padding: 20px;
+    color: #888888;
+    border-top: 3px solid var(--amarillo);
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+
+footer strong {
+    color: var(--amarillo);
+}
