@@ -5,68 +5,187 @@
     <meta charset="UTF-8">
     <title>D'Monster - Identidad es Sabor</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="D'Monster - Restaurante peruano urbano. Identidad es Sabor. Los mejores platos criollos y comida callejera de Lima.">
     <link rel="stylesheet" href="CSS/index.css">
 </head>
 
 <body>
     <header>
-        <img src="logo.png" alt="Logo de D'Monster">
-        <h1 style="margin-top: 10px;">D'MONSTER</h1>
-        <h2>IDENTIDAD ES SABOR</h2>
+        <div class="cabecera-contenido">
+            <img src="logo.png" alt="Logo de D'Monster">
+            <div>
+                <h1>D'MONSTER</h1>
+                <h2>IDENTIDAD ES SABOR</h2>
+            </div>
+        </div>
     </header>
-    <nav class="menu">
-        <a href="index.html">Inicio</a>
-        <a href="Nosotros.html">Acerca</a>
-        <a href="pedidos.html">Servicios</a>
-        <a href="menu.html">Menú</a>
-        <a href="contacto.html">Contacto</a>
+    <nav class="menu" id="nav-principal">
+        <span class="icono-menu" id="boton-menu">&#9776;</span>
+        <div class="enlaces-nav" id="enlaces-nav">
+            <a href="Index.html">Inicio</a>
+            <a href="Nosotros.html">Acerca</a>
+            <a href="pedidos.html">Servicios</a>
+            <a href="menu.html">Menu</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
     </nav>
+
     <main>
-        <section class="intro">
-            <h2>Bienvenido al Restaurante D'Monster</h2>
-            <p>
-                En <strong>D'Monster</strong> creemos que la comida es más que alimentarse:
-                es una <strong>experiencia, una identidad, un sabor que no se olvida.</strong>
-                Somos un restaurante peruano urbano que fusiona los sabores de la calle
-                con la sazón de siempre. Desde nuestra salchipapa hasta nuestro mostrito,
-                cada plato lleva el corazón de Lima.
-            </p>
-            <h3>¿Por qué elegirnos?</h3>
-            <ul>
-                <li><strong>Ingredientes frescos</strong> seleccionados cada día.</li>
-                <li>Sazón 100% <strong>casera y peruana.</strong></li>
-                <li>Ambiente <strong>acogedor y familiar.</strong></li>
-                <li>Precios <strong>accesibles para todos.</strong></li>
-                <li>Atención <strong>rápida y amable.</strong></li>
-                <li>Delivery disponible <strong>todos los días.</strong></li>
-                <li><a href="pedidos.html" style="color: var(--fucsia);">Haz tu pedido aquí</a></li>
-            </ul>
-            <h3>Conoce nuestro salón</h3>
-            <p>Un espacio <strong>cómodo y acogedor</strong> para disfrutar con familia y amigos:</p>
-            <br>
-            <section class="galeria">
-                <div class="local">
-                    <img src="salon1.png" alt="Salón principal">
-                    <h3>Salón principal</h3>
+        <section class="slider" id="slider-hero">
+            <div class="slider-pista" id="slider-pista">
+                <div class="slider-diapositiva diapositiva-estrella activa">
+                    <img src="Mostrito.png" alt="Mostrito a lo Vargas">
+                    <div class="diapositiva-contenido">
+                        <span class="etiqueta-estrella">&#9733; PLATO ESTRELLA</span>
+                        <h2>MOSTRITO A LO VARGAS</h2>
+                        <p>Inspirado en un miembro legendario de nuestro equipo. Salchicha, papas fritas doradas, huevo frito y nuestras salsas secretas de la casa. Una explosion de sabor urbano.</p>
+                        <a href="pedidos.html" class="boton-accion">Pide el Mostrito a lo Vargas!</a>
+                    </div>
                 </div>
-                <div class="local">
-                    <img src="salon2.png" alt="Ambiente del local">
-                    <h3>Ambiente del local</h3>
+                <div class="slider-diapositiva">
+                    <img src="Pollo a la brasa.png" alt="Pollo a la Brasa">
+                    <div class="diapositiva-contenido">
+                        <span class="etiqueta-estrella">&#9733; CLASICO PERUANO</span>
+                        <h2>POLLO A LA BRASA</h2>
+                        <p>Marinado en especias secretas y asado a la brasa hasta alcanzar la perfeccion. Acompanado de papas fritas crocantes y ensalada fresca.</p>
+                        <a href="menu.html" class="boton-accion">Ver nuestra Carta</a>
+                    </div>
                 </div>
-                <div class="local">
-                    <img src="salon3.png" alt="Pasar momentos entre colegas">
-                    <h3>Buenos Momentos</h3>
+                <div class="slider-diapositiva">
+                    <img src="Ceviche de carretilla.png" alt="Ceviche de Carretilla">
+                    <div class="diapositiva-contenido">
+                        <span class="etiqueta-estrella">&#9733; SABOR DE LA CALLE</span>
+                        <h2>CEVICHE DE CARRETILLA</h2>
+                        <p>Pescado fresco marinado en limon, aji y cebolla. El autentico sabor de la calle limena directo a tu mesa.</p>
+                        <a href="pedidos.html" class="boton-accion">Haz tu Pedido</a>
+                    </div>
                 </div>
-                <div class="local">
-                    <img src="salon4.png" alt="Buenas experiencias">
-                    <h3>Buenas Experiencias</h3>
+                <div class="slider-diapositiva">
+                    <img src="Lomo Saltado.png" alt="Lomo Saltado">
+                    <div class="diapositiva-contenido">
+                        <span class="etiqueta-estrella">&#9733; TRADICION PERUANA</span>
+                        <h2>LOMO SALTADO</h2>
+                        <p>Tiras de lomo fino salteadas con cebolla, tomate y aji amarillo. Servido con arroz y papas fritas crocantes.</p>
+                        <a href="menu.html" class="boton-accion">Explorar el Menu</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-indicadores" id="slider-indicadores">
+                <span class="indicador activo" data-indice="0"></span>
+                <span class="indicador" data-indice="1"></span>
+                <span class="indicador" data-indice="2"></span>
+                <span class="indicador" data-indice="3"></span>
+            </div>
+            <button class="slider-flecha slider-anterior" id="slider-anterior">&#10094;</button>
+            <button class="slider-flecha slider-siguiente" id="slider-siguiente">&#10095;</button>
+        </section>
+
+        <div class="contenedor-principal">
+            <section class="intro">
+                <h2>Bienvenido al Restaurante D'Monster</h2>
+                <p>
+                    En <strong>D'Monster</strong> creemos que la comida es mas que alimentarse:
+                    es una <strong>experiencia, una identidad, un sabor que no se olvida.</strong>
+                    Somos un restaurante peruano urbano que fusiona los sabores de la calle
+                    con la sazon de siempre. Desde nuestra salchipapa hasta nuestro mostrito,
+                    cada plato lleva el corazon de Lima.
+                </p>
+                <h3>Por que elegirnos?</h3>
+                <ul>
+                    <li><strong>Ingredientes frescos</strong> seleccionados cada dia.</li>
+                    <li>Sazon 100% <strong>casera y peruana.</strong></li>
+                    <li>Ambiente <strong>acogedor y familiar.</strong></li>
+                    <li>Precios <strong>accesibles para todos.</strong></li>
+                    <li>Atencion <strong>rapida y amable.</strong></li>
+                    <li>Delivery disponible <strong>todos los dias.</strong></li>
+                    <li><a href="pedidos.html" class="link-pedido">Haz tu pedido aqui</a></li>
+                </ul>
+            </section>
+
+            <section class="seccion-salon">
+                <h3>Conoce nuestro salon</h3>
+                <p>Un espacio <strong>comodo y acogedor</strong> para disfrutar con familia y amigos:</p>
+                <div class="galeria">
+                    <div class="local">
+                        <img src="salon1.png" alt="Salon principal">
+                        <h4>Salon principal</h4>
+                    </div>
+                    <div class="local">
+                        <img src="salon2.png" alt="Ambiente del local">
+                        <h4>Ambiente del local</h4>
+                    </div>
+                    <div class="local">
+                        <img src="salon3.png" alt="Buenos Momentos">
+                        <h4>Buenos Momentos</h4>
+                    </div>
+                    <div class="local">
+                        <img src="salon4.png" alt="Buenas Experiencias">
+                        <h4>Buenas Experiencias</h4>
+                    </div>
                 </div>
             </section>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2026 <strong>D'MONSTER</strong> - IDENTIDAD ES SABOR</p>
     </footer>
+
+    <script>
+        var indiceActual = 0;
+        var diapositivas = document.querySelectorAll('.slider-diapositiva');
+        var indicadores = document.querySelectorAll('.indicador');
+        var totalDiapositivas = diapositivas.length;
+        var intervaloAuto;
+
+        function mostrarDiapositiva(indice) {
+            if (indice >= totalDiapositivas) indice = 0;
+            if (indice < 0) indice = totalDiapositivas - 1;
+            indiceActual = indice;
+            for (var i = 0; i < diapositivas.length; i++) {
+                diapositivas[i].classList.remove('activa');
+                indicadores[i].classList.remove('activo');
+            }
+            diapositivas[indiceActual].classList.add('activa');
+            indicadores[indiceActual].classList.add('activo');
+        }
+
+        document.getElementById('slider-siguiente').addEventListener('click', function() {
+            mostrarDiapositiva(indiceActual + 1);
+            reiniciarAuto();
+        });
+
+        document.getElementById('slider-anterior').addEventListener('click', function() {
+            mostrarDiapositiva(indiceActual - 1);
+            reiniciarAuto();
+        });
+
+        for (var i = 0; i < indicadores.length; i++) {
+            indicadores[i].addEventListener('click', function() {
+                mostrarDiapositiva(parseInt(this.getAttribute('data-indice')));
+                reiniciarAuto();
+            });
+        }
+
+        function iniciarAuto() {
+            intervaloAuto = setInterval(function() {
+                mostrarDiapositiva(indiceActual + 1);
+            }, 5000);
+        }
+
+        function reiniciarAuto() {
+            clearInterval(intervaloAuto);
+            iniciarAuto();
+        }
+
+        iniciarAuto();
+
+        var botonMenu = document.getElementById('boton-menu');
+        var enlacesNav = document.getElementById('enlaces-nav');
+        botonMenu.addEventListener('click', function() {
+            enlacesNav.classList.toggle('nav-abierto');
+        });
+    </script>
 </body>
 
 </html>

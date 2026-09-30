@@ -1,127 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Contacto - D'Monster</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/contacto.css">
 </head>
-
 <body>
-
     <header>
-        <img src="logo.png" alt="Logo de D'Monster">
-        <h1>D'MONSTER</h1>
-        <h2>IDENTIDAD ES SABOR</h2>
+        <div class="cabecera-contenido">
+            <img src="logo.png" alt="Logo de D'Monster">
+            <div>
+                <h1>D'MONSTER</h1>
+                <h2>IDENTIDAD ES SABOR</h2>
+            </div>
+        </div>
     </header>
-
-    <nav class="menu">
-        <a href="index.html">Inicio</a>
-        <a href="Nosotros.html">Acerca</a>
-        <a href="pedidos.html">Servicios</a>
-        <a href="menu.html">Menú</a>
-        <a href="contacto.html">Contacto</a>
+    <nav class="menu" id="nav-principal">
+        <span class="icono-menu" id="boton-menu">&#9776;</span>
+        <div class="enlaces-nav" id="enlaces-nav">
+            <a href="Index.html">Inicio</a>
+            <a href="Nosotros.html">Acerca</a>
+            <a href="pedidos.html">Servicios</a>
+            <a href="menu.html">Menu</a>
+            <a href="contacto.html">Contacto</a>
+        </div>
     </nav>
-
     <main>
         <hr>
-
         <section id="contacto">
-
-            <!-- Columna izquierda: información -->
             <div class="info-contacto">
                 <p class="subtitulo"></p>
                 <h2>PONTE EN CONTACTO</h2>
                 <h3>CON NOSOTROS</h3>
-                <p>
-                    ¿Tienes preguntas o comentarios? Comunícate con nosotros a través
-                    del formulario, llámanos o visítanos en nuestro restaurante.
-                    ¡Estamos aquí para ayudarte!
-                </p>
-
-                <p>
-                    <strong>Dirección:</strong><br>
-                    Av. Ayabaca 356, Ica - Perú
-                </p>
-                <p>
-                    <strong>Teléfono:</strong><br>
-                    +51 999 123 456
-                </p>
-                <p>
-                    <strong>Correo:</strong><br>
-                    contacto@dmonster.com.pe
-                </p>
-                <p>
-                    <strong>Horario de atención:</strong><br>
-                    Lunes a Sábado: 9:00 am - 9:00 pm<br>
-                    Domingo: 9:00 am - 2:00 pm
-                </p>
-
+                <p>Tienes preguntas o comentarios? Comunicarte con nosotros a traves del formulario, llamanos o visitanos en nuestro restaurante. Estamos aqui para ayudarte!</p>
+                <p><strong>Direccion:</strong><br>Av. Ayabaca 356, Ica - Peru</p>
+                <p><strong>Telefono:</strong><br>+51 999 123 456</p>
+                <p><strong>Correo:</strong><br>contacto@dmonster.com.pe</p>
+                <p><strong>Horario de atencion:</strong><br>Lunes a Sabado: 9:00 am - 9:00 pm<br>Domingo: 9:00 am - 2:00 pm</p>
                 <div class="redes">
                     <a href="#">Facebook</a>
                     <a href="#">Instagram</a>
                     <a href="#">TikTok</a>
                 </div>
             </div>
-
-            <!-- Columna derecha: formulario -->
             <div class="form-contacto">
                 <form>
-
                     <fieldset>
-                        <legend>Envíanos un mensaje</legend>
-
-                        <label>Nombre:</label><br>
-                        <input type="text" name="nombre" placeholder="ejm: Juan Pérez" required><br>
-
+                        <legend>Envianos un mensaje</legend>
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" placeholder="ejm: Juan Perez" required>
                         <div class="fila-dos">
                             <div>
-                                <label>Correo electrónico:</label><br>
+                                <label>Correo electronico:</label>
                                 <input type="email" name="correo" placeholder="ejm: juan@gmail.com" required>
                             </div>
                             <div>
-                                <label>Teléfono:</label><br>
+                                <label>Telefono:</label>
                                 <input type="tel" name="telefono" placeholder="ejm: +51 999 000 000">
                             </div>
                         </div>
-
-                        <label>Asunto:</label><br>
+                        <label>Asunto:</label>
                         <select name="asunto">
                             <option>Consulta general</option>
                             <option>Reserva de mesa</option>
                             <option>Delivery</option>
                             <option>Sugerencia</option>
                             <option>Reclamo</option>
-                        </select><br>
-
-                        <label>Mensaje:</label><br>
-                        <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea><br>
-
+                        </select>
+                        <label>Mensaje:</label>
+                        <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje aqui..."></textarea>
                         <div class="opciones">
-                            <label>¿Cómo nos conociste?</label><br>
+                            <label>Como nos conociste?</label>
                             <input type="radio" name="medio" value="redes"> Redes sociales<br>
-                            <input type="radio" name="medio" value="recomendacion"> Recomendación<br>
-                            <input type="radio" name="medio" value="calle"> Pasé por el local<br>
+                            <input type="radio" name="medio" value="recomendacion"> Recomendacion<br>
+                            <input type="radio" name="medio" value="calle"> Pase por el local<br>
                             <input type="radio" name="medio" value="otro"> Otro<br>
                         </div>
-
                     </fieldset>
-
                     <input type="reset" value="Limpiar">
                     <button type="submit">Enviar Consulta</button>
-
                 </form>
             </div>
-
         </section>
-
         <hr>
     </main>
-
-    <footer>
-        &copy; 2026 <strong>D'MONSTER</strong> - IDENTIDAD ES SABOR
-    </footer>
-
+    <footer>&copy; 2026 <strong>D'MONSTER</strong> - IDENTIDAD ES SABOR</footer>
+    <script>
+        document.getElementById('boton-menu').addEventListener('click', function() {
+            document.getElementById('enlaces-nav').classList.toggle('nav-abierto');
+        });
+    </script>
 </body>
 </html>
