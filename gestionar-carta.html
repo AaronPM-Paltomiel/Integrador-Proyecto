@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Carta - Admin D'Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Estilos originales -->
+    <link rel="stylesheet" href="CSS/dashboard.css">
+
+    <!-- Libreria Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        /* Estructura principal */
+        .admin-cuerpo-pantalla {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        @media (min-width: 900px) {
+            .admin-cuerpo-pantalla {
+                flex-direction: row;
+            }
+        }
+
+        .admin-formulario,
+        .admin-lista {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Campos del formulario */
+        .admin-campo {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-campo label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .admin-campo input,
+        .admin-campo textarea,
+        .admin-campo select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        .admin-campo input:focus,
+        .admin-campo textarea:focus,
+        .admin-campo select:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+
+        /* Botones */
+        .admin-botones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-guardar {
+            background: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-cancelar {
+            background: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-guardar:hover {
+            background: #218838;
+        }
+
+        .btn-cancelar:hover {
+            background: #5a6268;
+        }
+
+        .btn-guardar:disabled,
+        .btn-cancelar:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Tabla de productos */
+        #tabla-admin {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #tabla-admin th {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background: #f8f9fa;
+            text-align: left;
+        }
+
+        #cuerpo-tabla td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn-editar {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .btn-quitar {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-editar:hover {
+            background: #0056b3;
+        }
+
+        .btn-quitar:hover {
+            background: #c82333;
+        }
+
+        /* Proteccion visual */
+        body.auth-pendiente .dashboard-contenedor {
+            display: none;
+        }
+
+        .pantalla-verificacion {
+            display: none;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            background: #1a1a2e;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        body.auth-pendiente .pantalla-verificacion {
+            display: flex;
+        }
+
+        .spinner-verificacion {
+            width: 42px;
+            height: 42px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: girar 0.8s linear infinite;
+        }
+
+        @keyframes girar {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Adaptacion a celulares */
+        @media (max-width: 600px) {
+            .admin-cuerpo-pantalla {
+                padding: 18px;
+                gap: 20px;
+            }
+
+            .admin-botones button {
+                flex: 1;
+            }
+
+            #tabla-admin {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-pendiente">
+
+    <!-- Verificacion de acceso -->
+    <div class="pantalla-verificacion" role="status">
+        <div class="spinner-verificacion"></div>
+        <p>Verificando acceso de administrador...</p>
+    </div>
+
+    <div class="dashboard-contenedor">
+
+        <!-- Menu lateral -->
+        <aside class="sidebar">
+
+            <div class="logo-sidebar">
+                <img src="logo.png" alt="D'Monster" width="60">
+                <h2>Admin</h2>
+            </div>
+
+            <nav class="nav-sidebar">
+
+                <a href="dashboard.html">
+                    Resumen de Ventas
+                </a>
+
+                <a
+                    href="dashboard.html#seccion-pedidos"
+                    class="link-pedidos-sidebar"
+                >
+                    Pedidos por la Web
+
+                    <span
+                        class="badge-pendientes"
+                        id="contador-pendientes"
+                    >0</span>
+                </a>
+
+                <a href="historial.html">
+                    Historial de Ventas
+                </a>
+
+                <a href="gestionar-carta.html" class="activo">
+                    Gestionar Carta
+                </a>
+
+                <a href="Index.html">
+                    Volver a la Web
+                </a>
+
+                <a
+                    href="#"
+                    id="btn-logout"
+                    onclick="window.dm.auth.logout(); return false;"
+                    style="color:#e94560;"
+                >
+                    &#x2192; Cerrar sesión
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+
+            <header class="header-dashboard">
+                <h1>Gestión de Platillos de la Carta</h1>
+            </header>
+
+            <section class="admin-cuerpo-pantalla">
+
+                <!-- Formulario de productos -->
+                <div class="admin-formulario">
+
+                    <h3 id="titulo-formulario">
+                        Agregar Plato Nuevo
+                    </h3>
+
+                    <!-- Se guarda el UUID del producto al editar -->
+                    <input
+                        type="hidden"
+                        id="admin-indice"
+                        value=""
+                    >
+
+                    <div class="admin-campo">
+                        <label for="admin-nombre">
+                            Nombre del Plato:
+                        </label>
+
+                        <input
+                            type="text"
+                            id="admin-nombre"
+                            placeholder="Ej: Lomo Saltado"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="admin-precio">
+                            Precio Base (S/):
+                        </label>
+
+                        <input
+                            type="number"
+                            id="admin-precio"
+                            placeholder="Ej: 18.00"
+                            step="0.01"
+                            min="0.01"
+                            required
+                        >
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="admin-imagen">
+                            Nombre del archivo de Imagen:
+                        </label>
+
+                        <input
+                            type="text"
+                            id="admin-imagen"
+                            placeholder="Ej: Lomo Saltado.png"
+                            required
+                        >
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="admin-descripcion">
+                            Descripción corta:
+                        </label>
+
+                        <textarea
+                            id="admin-descripcion"
+                            rows="3"
+                            placeholder="Descripción del plato..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="admin-campo">
+                        <label for="admin-categoria">
+                            Categoría:
+                        </label>
+
+                        <!-- Las categorias se cargan desde Supabase -->
+                        <select id="admin-categoria" required>
+                            <option value="">
+                                Cargando categorías...
+                            </option>
+                        </select>
+                    </div>
+
+                    <p style="
+                        font-size: 0.85rem;
+                        color: #666;
+                        margin-bottom: 15px;
+                        line-height: 1.5;
+                    ">
+                        Los productos con variantes pueden tener
+                        diferentes precios según su presentación.
+                        Modificar el precio base no cambia
+                        los precios de las variantes.
+                    </p>
+
+                    <div class="admin-botones">
+
+                        <button
+                            id="boton-guardar"
+                            class="btn-guardar"
+                            type="button"
+                        >
+                            Guardar Plato
+                        </button>
+
+                        <button
+                            id="boton-cancelar"
+                            class="btn-cancelar"
+                            type="button"
+                        >
+                            Cancelar Edición
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Lista de productos -->
+                <div class="admin-lista">
+
+                    <h3>Platos Registrados Actuales</h3>
+
+                    <p style="
+                        color: #666;
+                        font-size: 0.85rem;
+                        margin: 10px 0 15px;
+                    ">
+                        Los productos se consultan directamente
+                        desde Supabase.
+                        Quitar un producto lo marca como
+                        no disponible, sin eliminar su historial.
+                    </p>
+
+                    <div
+                        class="tabla-scroll"
+                        style="max-height: 500px; overflow-y: auto;"
+                    >
+
+                        <table
+                            id="tabla-admin"
+                            class="tabla-ventas"
+                        >
+
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Cat.</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="cuerpo-tabla">
+
+                                <tr>
+                                    <td
+                                        colspan="4"
+                                        style="text-align:center;"
+                                    >
+                                        Cargando productos desde Supabase...
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Cliente Supabase -->
+    <script src="js/supabase-client.js"></script>
+
+    <!-- Autenticacion -->
+    <script src="js/auth.js"></script>
+
+    <!-- Servicio de productos -->
+    <script src="js/productos-service.js"></script>
+
+    <!-- Administracion conectada a Supabase -->
+    <script src="js/admin-carta-supabase.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Ventas - D'Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="CSS/dashboard.css">
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Ocultar dashboard mientras se valida el acceso */
+        body.auth-pendiente .dashboard-contenedor {
+            display: none;
+        }
+
+        /* Pantalla temporal de verificacion */
+        .pantalla-verificacion {
+            display: none;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            background: #1a1a2e;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        body.auth-pendiente .pantalla-verificacion {
+            display: flex;
+        }
+
+        .spinner-verificacion {
+            width: 42px;
+            height: 42px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: girar 0.8s linear infinite;
+        }
+
+        @keyframes girar {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-pendiente">
+
+    <!-- Pantalla de verificacion de administrador -->
+    <div class="pantalla-verificacion" role="status">
+        <div class="spinner-verificacion"></div>
+        <p>Verificando acceso de administrador...</p>
+    </div>
+
+    <div class="dashboard-contenedor">
+
+        <!-- Menu lateral -->
+        <aside class="sidebar">
+
+            <div class="logo-sidebar">
+                <img src="logo.png" alt="D'Monster" width="60">
+                <h2>Admin</h2>
+            </div>
+
+            <nav class="nav-sidebar">
+
+                <a href="dashboard.html" class="activo">
+                    Resumen de Ventas
+                </a>
+
+                <a href="#seccion-pedidos" class="link-pedidos-sidebar">
+                    Pedidos por la Web
+                    <span
+                        class="badge-pendientes"
+                        id="contador-pendientes"
+                    >0</span>
+                </a>
+
+                <a href="historial.html">
+                    Historial de Ventas
+                </a>
+
+                <a href="gestionar-carta.html">
+                    Gestionar Carta
+                </a>
+
+                <a href="Index.html">
+                    Volver a la Web
+                </a>
+
+                <a
+                    href="#"
+                    id="btn-logout"
+                    onclick="window.dm.auth.logout(); return false;"
+                    style="color:#e94560; margin-top:auto;"
+                >
+                    &#x2192; Cerrar sesión
+                </a>
+
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+
+            <header class="header-dashboard">
+
+                <h1>Panel de Ventas (Punto de Venta)</h1>
+
+                <div
+                    class="fecha-actual"
+                    id="fecha-actual"
+                ></div>
+
+            </header>
+
+            <!-- Indicadores de ventas -->
+            <section class="kpis">
+
+                <div class="tarjeta-kpi">
+                    <h3>Ventas de Hoy</h3>
+
+                    <p
+                        class="valor"
+                        id="kpi-ventas-hoy"
+                    >
+                        S/ 0.00
+                    </p>
+                </div>
+
+                <div class="tarjeta-kpi meta-kpi">
+
+                    <h3>Meta del Día (S/ 500)</h3>
+
+                    <div class="barra-progreso-fondo">
+
+                        <div
+                            class="barra-progreso-llena"
+                            id="barra-meta"
+                        ></div>
+
+                    </div>
+
+                    <p
+                        class="progreso-texto"
+                        id="texto-meta"
+                    >
+                        0% completado
+                    </p>
+
+                </div>
+
+                <div class="tarjeta-kpi">
+
+                    <h3>Plato más vendido</h3>
+
+                    <p
+                        class="valor destaque"
+                        id="kpi-plato-estrella"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+            </section>
+
+            <!-- Punto de venta -->
+            <section class="punto-de-venta">
+
+                <h2>Registrar Nueva Venta Rápida</h2>
+
+                <div class="formulario-venta">
+
+                    <div class="campo" style="flex: 2;">
+
+                        <label for="select-plato">
+                            Seleccionar Plato:
+                        </label>
+
+                        <select id="select-plato">
+                            <option value="">
+                                Cargando productos...
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="campo" style="flex: 1;">
+
+                        <label for="input-cantidad">
+                            Cantidad:
+                        </label>
+
+                        <input
+                            type="number"
+                            id="input-cantidad"
+                            min="1"
+                            max="50"
+                            step="1"
+                            value="1"
+                        >
+
+                    </div>
+
+                    <button
+                        id="btn-agregar-carrito"
+                        class="btn-vender"
+                        type="button"
+                        style="background-color: #007bff;"
+                    >
+                        Agregar Plato
+                    </button>
+
+                </div>
+
+                <!-- Carrito de venta -->
+                <div
+                    id="carrito-pos"
+                    style="margin-top: 15px; display: none;"
+                >
+
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 10px;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                        "
+                    >
+
+                        <h4 style="color: #555; margin: 0;">
+                            Platos en la venta actual:
+                        </h4>
+
+                        <div>
+
+                            <label
+                                for="select-mesa"
+                                style="font-weight: bold; font-size: 0.9rem;"
+                            >
+                                Mesa/Origen:
+                            </label>
+
+                            <select
+                                id="select-mesa"
+                                style="
+                                    padding: 5px;
+                                    border-radius: 5px;
+                                    border: 1px solid #ccc;
+                                    margin-left: 5px;
+                                "
+                            >
+
+                                <option value="Para Llevar">
+                                    Para Llevar (Sin Mesa)
+                                </option>
+
+                                <option value="Mesa 1">Mesa 1</option>
+                                <option value="Mesa 2">Mesa 2</option>
+                                <option value="Mesa 3">Mesa 3</option>
+                                <option value="Mesa 4">Mesa 4</option>
+                                <option value="Mesa 5">Mesa 5</option>
+                                <option value="Mesa 6">Mesa 6</option>
+                                <option value="Mesa 7">Mesa 7</option>
+                                <option value="Mesa 8">Mesa 8</option>
+                                <option value="Mesa 9">Mesa 9</option>
+                                <option value="Mesa 10">Mesa 10</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <ul
+                        id="lista-carrito-pos"
+                        style="
+                            list-style: none;
+                            padding: 15px;
+                            background: #f8f9fa;
+                            border: 1px solid #dee2e6;
+                            border-radius: 5px;
+                            margin-bottom: 15px;
+                        "
+                    ></ul>
+
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            border-top: 2px solid #eee;
+                            padding-top: 15px;
+                        "
+                    >
+
+                        <strong
+                            style="font-size: 1.2rem; color: #1a1a2e;"
+                        >
+                            Total Venta:
+                            <span id="total-carrito-pos">
+                                S/ 0.00
+                            </span>
+                        </strong>
+
+                        <button
+                            id="btn-vender-todo"
+                            class="btn-vender"
+                            type="button"
+                        >
+                            Completar Venta
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Graficos y tabla -->
+            <section class="graficos-tablas">
+
+                <div class="panel-grafico">
+
+                    <h2>
+                        Ventas de los últimos 7 días
+                    </h2>
+
+                    <canvas id="graficoVentas"></canvas>
+
+                </div>
+
+                <div class="panel-tabla">
+
+                    <h2>
+                        Últimas transacciones (Hoy)
+                    </h2>
+
+                    <div class="tabla-scroll">
+
+                        <table class="tabla-ventas">
+
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Plato</th>
+                                    <th>Cant.</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tabla-ventas-cuerpo">
+                                <tr>
+                                    <td colspan="4">
+                                        Cargando transacciones...
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Pedidos web -->
+            <section
+                class="seccion-pedidos"
+                id="seccion-pedidos"
+            >
+
+                <div class="pedidos-cabecera">
+
+                    <h2>Pedidos por la Web</h2>
+
+                    <div class="filtros-pedidos">
+
+                        <button
+                            class="btn-filtro filtro-activo"
+                            data-filtro="todos"
+                            type="button"
+                        >
+                            Todos
+                        </button>
+
+                        <button
+                            class="btn-filtro"
+                            data-filtro="pendientes"
+                            type="button"
+                        >
+                            🟡 Pendientes
+                        </button>
+
+                        <button
+                            class="btn-filtro"
+                            data-filtro="despachados"
+                            type="button"
+                        >
+                            🟢 Despachados
+                        </button>
+
+                        <button
+                            class="btn-filtro"
+                            data-filtro="no-concretados"
+                            type="button"
+                        >
+                            🔴 No concretados
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="lista-pedidos"
+                    class="lista-pedidos"
+                >
+                    <p class="sin-pedidos">
+                        Cargando pedidos desde Supabase...
+                    </p>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Cliente Supabase -->
+    <script src="js/supabase-client.js"></script>
+
+    <!-- Autenticacion -->
+    <script src="js/auth.js"></script>
+
+    <!-- Servicios de Supabase -->
+    <script src="js/productos-service.js"></script>
+    <script src="js/pedidos-service.js"></script>
+    <script src="js/ventas-service.js"></script>
+
+    <!-- Logica del dashboard -->
+    <script src="ventas.js"></script>
+
+</body>
+</html>

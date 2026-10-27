@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administración – D'Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .login-logo h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1a1a2e;
+            margin-top: 12px;
+            letter-spacing: 1px;
+        }
+
+        .login-logo p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .campo label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #555;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.25s;
+            color: #1a1a2e;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #e94560;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #e94560, #c73652);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: transform 0.15s, box-shadow 0.15s;
+            margin-top: 8px;
+        }
+
+        .btn-login:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .error-msg {
+            background: #ffeef0;
+            border: 1px solid #f5c6cb;
+            color: #c0392b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .volver-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .volver-link a {
+            color: #e94560;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .volver-link a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            margin: 24px 0;
+        }
+
+        .badge-admin {
+            display: inline-block;
+            background: #1a1a2e;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <div class="login-logo">
+            <img src="logo.png" alt="D'Monster Logo">
+            <h1>D'MONSTER</h1>
+            <p>Identidad es Sabor</p>
+            <span class="badge-admin">
+                &#9679; PANEL ADMINISTRATIVO
+            </span>
+        </div>
+
+        <div id="error-msg" class="error-msg" role="alert"></div>
+
+        <form id="form-login" novalidate>
+
+            <div class="campo">
+                <label for="email">Correo electrónico</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="admin@dmonster.com"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="campo">
+                <label for="password">Contraseña</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" id="btn-login" class="btn-login">
+                Ingresar al Panel
+            </button>
+
+        </form>
+
+        <hr class="divider">
+
+        <p class="volver-link">
+            <a href="Index.html">← Volver a la página principal</a>
+        </p>
+
+    </div>
+
+    <!-- Libreria Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Archivos del proyecto -->
+    <script src="js/supabase-client.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+
+            const form = document.getElementById('form-login');
+            const btnLogin = document.getElementById('btn-login');
+            const errorMsg = document.getElementById('error-msg');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            // Mostrar errores
+            function mostrarError(mensaje) {
+                errorMsg.textContent = mensaje;
+                errorMsg.classList.add('visible');
+            }
+
+            // Ocultar errores
+            function ocultarError() {
+                errorMsg.textContent = '';
+                errorMsg.classList.remove('visible');
+            }
+
+            // Controlar estado del boton
+            function setLoading(loading) {
+                btnLogin.disabled = loading;
+
+                btnLogin.innerHTML = loading
+                    ? '<span class="loading-spinner"></span>Verificando...'
+                    : 'Ingresar al Panel';
+            }
+
+            // Verificar conexion y sesion existente
+            if (!window.dm || !window.dm.supabase || !window.dm.auth) {
+                mostrarError('No se pudo cargar la conexion con Supabase.');
+                btnLogin.disabled = true;
+                return;
+            }
+
+            try {
+                const sesionActiva = await window.dm.auth.verificarAdmin();
+
+                if (sesionActiva) {
+                    const destino = window.dm.auth.obtenerDestinoSeguro();
+                    window.location.href = destino;
+                    return;
+                }
+            } catch (error) {
+                console.error('Error al verificar sesion:', error);
+            }
+
+            // Procesar formulario de login
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                ocultarError();
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                if (!email || !password) {
+                    mostrarError('Por favor ingresa tu correo y contraseña.');
+                    return;
+                }
+
+                setLoading(true);
+
+                try {
+                    // 1. Autenticar credenciales en Supabase
+                    const resultado = await window.dm.auth.login(email, password);
+
+                    if (resultado.error) {
+                        mostrarError('No se pudo iniciar sesión. Verifica tus credenciales.');
+                        passwordInput.value = '';
+                        passwordInput.focus();
+                        return;
+                    }
+
+                    // 2. Comprobar rol administrador
+                    const esAdmin = await window.dm.auth.verificarAdmin();
+
+                    if (!esAdmin) {
+                        const { error } = await window.dm.supabase.auth.signOut({
+                            scope: 'local'
+                        });
+
+                        if (error) {
+                            console.error('Error al cerrar sesion:', error);
+                        }
+
+                        passwordInput.value = '';
+                        mostrarError('No tienes permisos de administrador.');
+                        return;
+                    }
+
+                    // 3. Acceso autorizado
+                    const destino = window.dm.auth.obtenerDestinoSeguro();
+                    window.location.href = destino;
+
+                } catch (error) {
+                    console.error('Error durante el login:', error);
+                    mostrarError('Ocurrio un problema de conexion. Intenta nuevamente.');
+
+                } finally {
+                    setLoading(false);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

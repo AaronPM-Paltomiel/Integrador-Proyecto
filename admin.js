@@ -226,6 +226,7 @@ function guardarPlato() {
 document.addEventListener('DOMContentLoaded', function() {
     cargarPlatillos();
     renderizarCarta();
+    renderizarTablaAdmin();
 
     var botonAdmin = document.getElementById('boton-admin');
     var modalFondo = document.getElementById('modal-fondo');
